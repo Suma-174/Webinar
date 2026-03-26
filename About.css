@@ -1,0 +1,159 @@
+import { useState } from "react";
+import FadeIn from "../components/FadeIn";
+import "./Speakers.css";
+
+const SPEAKERS = [
+  {
+    name: "Dr. Priya Sharma",
+    role: "AI Research Lead, DeepMind",
+    initials: "PS",
+    color: "#ff6b35",
+    colorBg: "rgba(255,107,53,0.12)",
+    session: "Opening Keynote — 10:00 AM",
+    topic: "The Future of Web Development in the AI Era",
+    bio: "Dr. Priya Sharma is a pioneering researcher in applied machine learning with 15+ years transforming how enterprises leverage AI. Formerly at Google Brain, she now leads a team at DeepMind focused on practical AI for developers. She has authored 30+ research papers and spoken at NeurIPS, ICLR, and Google I/O.",
+    tags: ["Machine Learning", "AI Systems", "15+ Years Exp.", "Published Author"],
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Arjun Mehta",
+    role: "CTO, Scalable Systems Inc.",
+    initials: "AM",
+    color: "#00c9a7",
+    colorBg: "rgba(0,201,167,0.12)",
+    session: "Deep Dive — 10:45 AM",
+    topic: "Scaling Architecture for Millions of Users",
+    bio: "Arjun Mehta architected distributed systems that now serve 100M+ users across 40 countries. With a background at AWS and Stripe, he brings hard-won lessons in reliability, cost efficiency, and engineering culture. He writes the popular newsletter 'Systems at Scale' read by 80K engineers.",
+    tags: ["System Design", "Cloud Architecture", "AWS", "80K Newsletter"],
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Sofia Reyes",
+    role: "Product Strategist, UX Global",
+    initials: "SR",
+    color: "#845ef7",
+    colorBg: "rgba(132,94,247,0.12)",
+    session: "Design Workshop — 11:30 AM",
+    topic: "Building Products People Actually Love",
+    bio: "Sofia Reyes bridges the gap between user needs and technical reality. She has led product design for teams at Figma, Notion, and several Y Combinator startups. Her workshop-style talks are known for being hands-on and immediately actionable, not theoretical.",
+    tags: ["Product Design", "UX Research", "Figma Alumni", "Workshop Leader"],
+    linkedin: "#",
+    twitter: "#",
+  },
+];
+
+export default function Speakers({ navigate }) {
+  const [active, setActive] = useState(0);
+  const sp = SPEAKERS[active];
+
+  return (
+    <div>
+      {/* PAGE HERO */}
+      <section className="page-hero grid-bg" style={{ minHeight: 380 }}>
+        <div className="orb" style={{ position: "absolute", width: 500, height: 400, background: "radial-gradient(circle,rgba(124,92,252,0.2) 0%,transparent 70%)", top: 0, left: "5%", borderRadius: "50%", filter: "blur(70px)" }} />
+        <div className="container" style={{ paddingTop: 80, paddingBottom: 60, position: "relative", zIndex: 2 }}>
+          <FadeIn>
+            <div className="tag">Speakers</div>
+            <h1 style={{ maxWidth: 600, marginBottom: 18 }}>
+              Meet the <span className="grad-text">experts</span><br />behind WebConf.
+            </h1>
+            <p style={{ maxWidth: 500, fontSize: "1.05rem" }}>
+              Three practitioners who've shipped at scale, led teams, and are here to share the real story.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      <div className="divider" />
+
+      {/* SPEAKER TABS */}
+      <section className="section">
+        <div className="container">
+          {/* Tab Switcher */}
+          <FadeIn>
+            <div className="sp-tabs">
+              {SPEAKERS.map((s, i) => (
+                <button key={i} onClick={() => setActive(i)} className={`sp-tab${active === i ? " active" : ""}`} style={{ "--sp-color": s.color }}>
+                  <div className="sp-tab-avatar" style={{ background: s.colorBg, color: s.color }}>{s.initials}</div>
+                  <div className="sp-tab-info">
+                    <span className="sp-tab-name">{s.name}</span>
+                    <span className="sp-tab-role">{s.role.split(",")[0]}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </FadeIn>
+
+          {/* Speaker Detail */}
+          <FadeIn key={active} delay={0.05}>
+            <div className="sp-detail card-static">
+              <div className="sp-detail-top">
+                <div className="sp-big-avatar" style={{ background: sp.colorBg, color: sp.color }}>
+                  {sp.initials}
+                </div>
+                <div>
+                  <h2 style={{ marginBottom: 6 }}>{sp.name}</h2>
+                  <p style={{ color: sp.color, fontWeight: 700, marginBottom: 14 }}>{sp.role}</p>
+                  <div className="sp-tags">
+                    {sp.tags.map(t => (
+                      <span key={t} className="sp-tag" style={{ background: sp.colorBg, color: sp.color, borderColor: sp.color + "44" }}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <p className="sp-bio">{sp.bio}</p>
+
+              <div className="sp-session-box" style={{ borderColor: sp.color + "33", background: sp.colorBg }}>
+                <p style={{ fontSize: "0.75rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: sp.color, marginBottom: 4 }}>{sp.session}</p>
+                <p style={{ color: "var(--text)", fontWeight: 600 }}>{sp.topic}</p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <div className="divider" />
+
+      {/* ALL SPEAKERS CARDS */}
+      <section className="section" style={{ background: "rgba(124,92,252,0.04)" }}>
+        <div className="container">
+          <FadeIn>
+            <div className="sec-header">
+              <div className="tag">All Speakers</div>
+              <h2>The full lineup</h2>
+            </div>
+          </FadeIn>
+          <div className="grid-3">
+            {SPEAKERS.map((s, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="card sp-card" onClick={() => { setActive(i); window.scrollTo({ top: 400, behavior: "smooth" }); }}>
+                  <div className="sp-card-avatar" style={{ background: s.colorBg, color: s.color }}>{s.initials}</div>
+                  <h3 style={{ marginBottom: 4 }}>{s.name}</h3>
+                  <p style={{ color: s.color, fontSize: "0.85rem", fontWeight: 600, marginBottom: 12 }}>{s.role}</p>
+                  <p style={{ fontSize: "0.87rem", color: "var(--text2)" }}>{s.bio.slice(0, 90)}...</p>
+                  <div style={{ marginTop: 14, fontSize: "0.78rem", color: "var(--text3)", fontWeight: 600 }}>
+                    📅 {s.session}
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-sm" style={{ paddingBottom: 80 }}>
+        <div className="container" style={{ textAlign: "center" }}>
+          <FadeIn>
+            <h2 style={{ marginBottom: 12 }}>Hear them live.</h2>
+            <p style={{ marginBottom: 28 }}>Register now and get direct access to all 3 speakers.</p>
+            <button className="btn btn-primary" onClick={() => navigate("register")}>Register Free →</button>
+          </FadeIn>
+        </div>
+      </section>
+    </div>
+  );
+}

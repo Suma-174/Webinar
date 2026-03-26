@@ -1,0 +1,162 @@
+import FadeIn from "../components/FadeIn";
+import Countdown from "../components/Countdown";
+import "./Home.css";
+
+const BENEFITS = [
+  { icon: "⚡", title: "Live Interaction", desc: "Ask questions directly to industry experts in real time." },
+  { icon: "🎓", title: "Free Certificate", desc: "Receive a verified PDF certificate upon attending." },
+  { icon: "📦", title: "Resource Pack", desc: "Exclusive slides, templates, and code repositories." },
+  { icon: "🌐", title: "Global Network", desc: "Connect with 2,000+ professionals from 50+ countries." },
+  { icon: "🔁", title: "Replay Access", desc: "30-day on-demand access to the full recording." },
+  { icon: "💡", title: "Real Takeaways", desc: "Actionable frameworks you can apply immediately." },
+];
+
+const TESTIMONIALS = [
+  { name: "Rohan K.", role: "Frontend Dev", text: "Completely changed how I approach project architecture.", stars: 5 },
+  { name: "Ananya S.", role: "Product Manager", text: "The Q&A panel was gold — got answers I've needed for years.", stars: 5 },
+  { name: "James T.", role: "Startup Founder", text: "Landed two partnerships from the networking session alone.", stars: 5 },
+];
+
+export default function Home({ navigate }) {
+  return (
+    <div>
+      {/* HERO */}
+      <section className="hero grid-bg">
+        <div className="orb orb1" />
+        <div className="orb orb2" />
+
+        <div className="container hero-inner">
+          <div className="hero-content">
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
+              <div className="pulse-dot" />
+              <div className="tag">🗓 August 15, 2025 · 10:00 AM IST · Free</div>
+            </div>
+
+            <h1 className="fade-up">
+              Build the Future<br />
+              <span className="grad-text">of the Web</span><br />
+              Together.
+            </h1>
+
+            <p className="hero-sub fade-up" style={{ animationDelay: "0.1s" }}>
+              A free, high-impact virtual event for developers, designers, and product builders —
+              featuring 3 world-class speakers, live workshops, and real-time Q&A.
+            </p>
+
+            <div className="hero-btns fade-up" style={{ animationDelay: "0.2s" }}>
+              <button className="btn btn-primary" onClick={() => navigate("register")}>Reserve My Spot →</button>
+              <button className="btn btn-outline" onClick={() => navigate("speakers")}>Meet Speakers</button>
+            </div>
+
+            <div className="hero-stats fade-up" style={{ animationDelay: "0.3s" }}>
+              {[["2,000+", "Attendees"], ["3", "Expert Speakers"], ["5", "Live Sessions"], ["Free", "Always"]].map(([v, l]) => (
+                <div key={l} className="stat-item">
+                  <span className="stat-val">{v}</span>
+                  <span className="stat-lbl">{l}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="hero-right hide-md">
+            <div className="floating hero-card-main">
+              <div className="event-badge">LIVE EVENT</div>
+              <div style={{ fontSize: "3rem", marginBottom: 8 }}>🚀</div>
+              <p style={{ fontWeight: 700, color: "var(--text)", fontSize: "1.1rem" }}>WebConf 2025</p>
+              <p style={{ color: "var(--text2)", fontSize: "0.85rem", marginTop: 4 }}>August 15 · Online · Free</p>
+              <div style={{ marginTop: 16, display: "flex", gap: 6, justifyContent: "center" }}>
+                {["React", "UI/UX", "System Design"].map(t => (
+                  <span key={t} className="mini-tag">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* COUNTDOWN */}
+      <section className="section-sm" style={{ background: "rgba(124,92,252,0.06)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+        <div className="container" style={{ textAlign: "center" }}>
+          <p style={{ fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text3)", marginBottom: 24 }}>Event starts in</p>
+          <Countdown target="2025-08-15T10:00:00" />
+        </div>
+      </section>
+
+      {/* BENEFITS */}
+      <section className="section">
+        <div className="container">
+          <FadeIn>
+            <div className="sec-header">
+              <div className="tag">Why Attend</div>
+              <h2>Everything you'll gain</h2>
+              <p>More than a webinar — a launchpad for your next breakthrough.</p>
+            </div>
+          </FadeIn>
+
+          <div className="grid-3">
+            {BENEFITS.map((b, i) => (
+              <FadeIn key={b.title} delay={i * 0.08}>
+                <div className="card">
+                  <div className="benefit-icon">{b.icon}</div>
+                  <h3 style={{ marginBottom: 8 }}>{b.title}</h3>
+                  <p style={{ fontSize: "0.9rem" }}>{b.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="divider" />
+
+      {/* TESTIMONIALS */}
+      <section className="section" style={{ background: "rgba(124,92,252,0.04)" }}>
+        <div className="container">
+          <FadeIn>
+            <div className="sec-header">
+              <div className="tag">Social Proof</div>
+              <h2>Loved by attendees</h2>
+            </div>
+          </FadeIn>
+          <div className="grid-3">
+            {TESTIMONIALS.map((t, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="card testi-card">
+                  <div style={{ display: "flex", gap: 3, marginBottom: 14 }}>
+                    {[...Array(t.stars)].map((_, j) => <span key={j} style={{ color: "#FFD700" }}>★</span>)}
+                  </div>
+                  <p style={{ fontStyle: "italic", marginBottom: 20, color: "rgba(240,238,255,0.7)" }}>"{t.text}"</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div className="avatar-sm">{t.name[0]}</div>
+                    <div>
+                      <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--text)" }}>{t.name}</p>
+                      <p style={{ fontSize: "0.8rem", color: "var(--text3)" }}>{t.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section">
+        <div className="container">
+          <FadeIn>
+            <div className="cta-banner">
+              <div className="orb" style={{ width: 400, height: 200, background: "radial-gradient(circle,rgba(124,92,252,0.2) 0%,transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", borderRadius: "50%", filter: "blur(40px)" }} />
+              <h2 style={{ position: "relative", marginBottom: 12 }}>Don't miss your chance.</h2>
+              <p style={{ position: "relative", marginBottom: 28, maxWidth: 460, margin: "0 auto 28px" }}>
+                Seats fill up fast. Register today and secure your spot for free.
+              </p>
+              <button className="btn btn-primary" style={{ fontSize: "1.05rem", padding: "16px 40px", position: "relative" }} onClick={() => navigate("register")}>
+                Register Now — It's Free →
+              </button>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+    </div>
+  );
+}

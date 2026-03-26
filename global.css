@@ -1,0 +1,26 @@
+.sp-tabs { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+
+.sp-tab {
+  display: flex; align-items: center; gap: 12px; padding: 12px 18px;
+  background: rgba(255,255,255,0.04); border: 1.5px solid var(--border);
+  border-radius: 14px; cursor: pointer; font-family: var(--font); transition: all 0.22s;
+  flex: 1; min-width: 200px;
+}
+.sp-tab:hover { border-color: var(--sp-color, var(--accent)); background: rgba(255,255,255,0.07); }
+.sp-tab.active { border-color: var(--sp-color, var(--accent)); background: rgba(255,255,255,0.06); }
+
+.sp-tab-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; flex-shrink: 0; }
+.sp-tab-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+.sp-tab-name { font-size: 0.92rem; font-weight: 700; color: var(--text); }
+.sp-tab-role { font-size: 0.78rem; color: var(--text3); }
+
+.sp-detail { display: flex; flex-direction: column; gap: 24px; }
+.sp-detail-top { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+.sp-big-avatar { width: 88px; height: 88px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.8rem; flex-shrink: 0; }
+.sp-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.sp-tag { font-size: 0.75rem; font-weight: 700; padding: 5px 12px; border-radius: 100px; border: 1px solid; }
+.sp-bio { color: var(--text2); line-height: 1.8; font-size: 1rem; }
+.sp-session-box { padding: 16px 20px; border-radius: 12px; border: 1px solid; }
+
+.sp-card { cursor: pointer; }
+.sp-card-avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin-bottom: 14px; }
