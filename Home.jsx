@@ -47,7 +47,7 @@ export default function Register() {
               Save your seat.<br /><span className="grad-text">It's free.</span>
             </h1>
             <p style={{ maxWidth: 480, fontSize: "1.05rem" }}>
-              Join 2,000+ builders at WebConf 2025. Takes 30 seconds to register.
+              Join 2,000+ builders at WebConf 2026. Takes 30 seconds to register.
             </p>
           </FadeIn>
         </div>
